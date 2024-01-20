@@ -191,6 +191,25 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                               ),
+                            ),
+                            //
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Center(
+                              child: RichText(
+                                text: TextSpan(
+                                  text: 'New to app? ',
+                                  style: DefaultTextStyle.of(context)
+                                      .style
+                                      .copyWith(color: Colors.white),
+                                  children: const <TextSpan>[
+                                    TextSpan(
+                                        text: 'Sign Up',
+                                        style: TextStyle(color: Colors.orange)),
+                                  ],
+                                ),
+                              ),
                             )
                           ],
                         ),
