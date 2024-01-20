@@ -71,6 +71,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -107,8 +108,92 @@ class _LoginPageState extends State<LoginPage> {
                           left: Radius.circular(40),
                         ),
                       ),
-                      child: Column(
-                        children: [],
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 50),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Hi, login to ",
+                              style: GoogleFonts.roboto(
+                                  color:
+                                      const Color.fromARGB(255, 208, 199, 199),
+                                  fontSize: 20),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              "Quiz",
+                              style: GoogleFonts.roboto(
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextField(
+                              decoration: InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                hintText: "Enter Your Email",
+                                hintStyle: GoogleFonts.roboto(
+                                    color: Color.fromARGB(255, 180, 179, 179),
+                                    fontSize: 18),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextField(
+                              decoration: InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                hintText: "Enter Your Password",
+                                hintStyle: GoogleFonts.roboto(
+                                    color: Color.fromARGB(255, 180, 179, 179),
+                                    fontSize: 18),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            ClipRRect(
+                              borderRadius: BorderRadiusDirectional.circular(8),
+                              child: Container(
+                                // padding: EdgeInsets.symmetric(vertical: 0, horizontal: 40),
+                                width: 350,
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                      colors: [
+                                        Color.fromARGB(255, 130, 30, 160),
+                                        Color.fromARGB(255, 176, 91, 21)
+                                      ],
+                                      begin: Alignment.bottomLeft,
+                                      end: Alignment.bottomRight),
+                                ),
+
+                                child: TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    "Login",
+                                    style: GoogleFonts.roboto(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],
