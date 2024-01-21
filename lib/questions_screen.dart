@@ -4,17 +4,29 @@ import 'package:quiz_app/answer_button.dart';
 import 'package:quiz_app/data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
+  const QuestionsScreen({super.key, required this.onSelectAnswer});
+
+  final void Function(String answer) onSelectAnswer;
 
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
-  final currentQuestion = questions[0];
+  var currentQuestionIndex = 0;
+
+  void answerQuestion(String selectedAnswer) {
+    widget.onSelectAnswer(selectedAnswer);
+    setState(() {
+      currentQuestionIndex++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final currentQuestion = questions[currentQuestionIndex];
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -31,7 +43,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   child: Stack(
                     children: [
                       Card(
@@ -43,7 +55,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                 currentQuestion.text,
                                 style: GoogleFonts.roboto(
                                   fontSize: 20,
-                                  color: Color.fromARGB(255, 32, 31, 31),
+                                  color: const Color.fromARGB(255, 32, 31, 31),
                                 ),
                               ),
                             ),
@@ -74,7 +86,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                 // I use ... to convert the list to individual values since the column list is expecting widget and not list
                 ...currentQuestion.getShuffledAnswer().map(
                   (answer) {
-                    return AnswerButton(answer, () {});
+                    return AnswerButton(answer, () {
+                      answerQuestion(answer);
+                    });
                   },
                 ),
               ],

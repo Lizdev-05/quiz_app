@@ -224,12 +224,16 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Positioned(
-                top: height * .3 - (width * .1),
-                left: width * .3,
+                // top: height * .3 - (width * .1),
+                // left: width * .3,
+
+                top: height * .1 - (width * .3),
+                left: width * .1 - (width * .1),
                 child: SizedBox(
-                  height: 200,
-                  width: 160,
-                  child: Image.asset("images/quizz.png"),
+                  height: 600,
+                  width: 450,
+                  // child: Image.asset("images/quizz.png"),
+                  child: Image.asset("images/quizloginn.png"),
                 ),
               )
             ],

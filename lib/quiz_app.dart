@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/login.dart';
 import 'package:quiz_app/questions_screen.dart';
+import 'package:quiz_app/result_screen.dart';
 import 'package:quiz_app/splash_screen.dart';
 
 class QuizApp extends StatefulWidget {
@@ -13,10 +15,23 @@ class QuizApp extends StatefulWidget {
 class _QuizAppState extends State<QuizApp> {
   var activeScreen = "splash-screen";
 
+  List<String> selectedAnswer = [];
+
   void switchScreen(String screenName) {
     setState(() {
       activeScreen = screenName;
     });
+  }
+
+  void chosenAswer(String answer) {
+    selectedAnswer.add(answer);
+
+    if (selectedAnswer.length == questions.length) {
+      setState(() {
+        selectedAnswer = [];
+        activeScreen = "splash-screen";
+      });
+    }
   }
 
   @override
@@ -42,12 +57,14 @@ class _QuizAppState extends State<QuizApp> {
         screenWidget = LoginPage(switchScreen);
         break;
       case "question-screen":
-        screenWidget = const QuestionsScreen();
+        screenWidget = QuestionsScreen(onSelectAnswer: chosenAswer);
         break;
       default:
         screenWidget = SplashScreen(switchScreen);
     }
 
-    return screenWidget;
+    // return screenWidget;
+
+    return const ResultScreen();
   }
 }
