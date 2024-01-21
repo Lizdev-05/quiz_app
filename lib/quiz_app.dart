@@ -24,12 +24,12 @@ class _QuizAppState extends State<QuizApp> {
     });
   }
 
-  void chosenAswer(String answer) {
+  void chooseAnswer(String answer) {
     selectedAnswer.add(answer);
 
     if (selectedAnswer.length == questions.length) {
       setState(() {
-        selectedAnswer = [];
+        // selectedAnswer = [];
         activeScreen = "result-screen";
       });
     }
@@ -58,10 +58,12 @@ class _QuizAppState extends State<QuizApp> {
         screenWidget = LoginPage(switchScreen);
         break;
       case "question-screen":
-        screenWidget = QuestionsScreen(onSelectAnswer: chosenAswer);
+        screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
         break;
       case "result-screen":
-        screenWidget = const ResultScreen();
+        screenWidget = ResultScreen(
+          chosenAnswer: selectedAnswer,
+        );
         break;
       default:
         screenWidget = SplashScreen(switchScreen);
