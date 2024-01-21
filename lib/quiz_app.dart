@@ -3,6 +3,7 @@ import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/login.dart';
 import 'package:quiz_app/questions_screen.dart';
 import 'package:quiz_app/result_screen.dart';
+
 import 'package:quiz_app/splash_screen.dart';
 
 class QuizApp extends StatefulWidget {
@@ -29,7 +30,7 @@ class _QuizAppState extends State<QuizApp> {
     if (selectedAnswer.length == questions.length) {
       setState(() {
         selectedAnswer = [];
-        activeScreen = "splash-screen";
+        activeScreen = "result-screen";
       });
     }
   }
@@ -59,12 +60,15 @@ class _QuizAppState extends State<QuizApp> {
       case "question-screen":
         screenWidget = QuestionsScreen(onSelectAnswer: chosenAswer);
         break;
+      case "result-screen":
+        screenWidget = const ResultScreen();
+        break;
       default:
         screenWidget = SplashScreen(switchScreen);
     }
 
-    // return screenWidget;
+    return screenWidget;
 
-    return const ResultScreen();
+    // return const ResultScreen();
   }
 }
