@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/answer_button.dart';
+import 'package:quiz_app/data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
@@ -9,6 +11,7 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  final currentQuestion = questions[0];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,51 +25,60 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           ),
         ),
         child: SafeArea(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 200,
-                width: 300,
-                child: Stack(
-                  children: [
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(32.0),
-                        child: Center(
-                          child: SingleChildScrollView(
-                            child: Text(
-                              "This is for question one, ufildcjxknsadxjkj dsahcbkjsn,ndhwsbcaddhkwvscald,hvfkacdsvhdfeks",
-                              style: GoogleFonts.roboto(
-                                fontSize: 20,
-                                color: Color.fromARGB(255, 32, 31, 31),
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Stack(
+                    children: [
+                      Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(32.0),
+                          child: Center(
+                            child: SingleChildScrollView(
+                              child: Text(
+                                currentQuestion.text,
+                                style: GoogleFonts.roboto(
+                                  fontSize: 20,
+                                  color: Color.fromARGB(255, 32, 31, 31),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    const Positioned(
-                      top: 8,
-                      left: 8,
-                      child: Icon(
-                        Icons.format_quote,
-                        color: Color.fromARGB(255, 69, 0, 159),
-                        size: 34,
+                      const Positioned(
+                        top: 8,
+                        left: 8,
+                        child: Icon(
+                          Icons.format_quote,
+                          color: Color.fromARGB(255, 130, 30, 160),
+                          size: 34,
+                        ),
                       ),
-                    ),
-                    const Positioned(
-                      bottom: 8,
-                      right: 8,
-                      child: Icon(
-                        Icons.format_quote,
-                        color: Color.fromARGB(255, 69, 0, 159),
-                        size: 34,
+                      const Positioned(
+                        bottom: 8,
+                        right: 8,
+                        child: Icon(
+                          Icons.format_quote,
+                          color: Color.fromARGB(255, 130, 30, 160),
+                          size: 34,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              )
-            ],
+                // I use ... to convert the list to individual values since the column list is expecting widget and not list
+                ...currentQuestion.getShuffledAnswer().map(
+                  (answer) {
+                    return AnswerButton(answer, () {});
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
