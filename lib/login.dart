@@ -74,7 +74,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final Function switchScreen;
+  const LoginPage(this.switchScreen, {super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -183,7 +184,8 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
 
                                 child: TextButton(
-                                  onPressed: () {},
+                                  onPressed: () =>
+                                      widget.switchScreen("question-screen"),
                                   child: Text(
                                     "Login",
                                     style: GoogleFonts.roboto(
@@ -202,11 +204,14 @@ class _LoginPageState extends State<LoginPage> {
                                   text: 'New to app? ',
                                   style: DefaultTextStyle.of(context)
                                       .style
-                                      .copyWith(color: Colors.white),
+                                      .copyWith(
+                                          color: Colors.white, fontSize: 20),
                                   children: const <TextSpan>[
                                     TextSpan(
                                         text: 'Sign Up',
-                                        style: TextStyle(color: Colors.orange)),
+                                        style: TextStyle(
+                                            color: Colors.orange,
+                                            fontSize: 20)),
                                   ],
                                 ),
                               ),

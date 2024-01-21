@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+  const SplashScreen(this.switchScreen, {super.key});
+
+  final Function switchScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,7 @@ class SplashScreen extends StatelessWidget {
                   ], begin: Alignment.bottomLeft, end: Alignment.bottomRight),
                 ),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () => switchScreen("login-screen"),
                   child: Text(
                     "Get Started",
                     style:
