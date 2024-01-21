@@ -6,6 +6,13 @@ class QuestionSummary extends StatelessWidget {
 
   final List<Map<String, Object>> summaryData;
 
+  // final isCorrectAnswer =
+  //     summaryData["user_answer"] == summaryData["correct_answer"];
+
+  bool isCorrectAnswer(Map<String, Object> data) {
+    return data["user_answer"] == data["correct_answer"];
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -41,21 +48,81 @@ class QuestionSummary extends StatelessWidget {
                                               255, 75, 1, 171),
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    Text(
-                                      (data['user_answer'] as String),
-                                      style: GoogleFonts.roboto(
-                                        fontSize: 20,
-                                        color: const Color.fromARGB(
-                                            255, 32, 31, 31),
+                                    Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                12),
+                                        child: Container(
+                                          padding: EdgeInsets.all(20),
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            gradient: isCorrectAnswer(data)
+                                                ? const LinearGradient(
+                                                    colors: [
+                                                        Color.fromARGB(
+                                                            255, 5, 91, 33),
+                                                        Color.fromARGB(
+                                                            255, 44, 143, 71)
+                                                      ],
+                                                    begin: Alignment.bottomLeft,
+                                                    end: Alignment.bottomRight)
+                                                : const LinearGradient(
+                                                    colors: [
+                                                        Color.fromARGB(
+                                                            255, 144, 30, 74),
+                                                        Color.fromARGB(
+                                                            255, 207, 48, 48)
+                                                      ],
+                                                    begin: Alignment.bottomLeft,
+                                                    end: Alignment.bottomRight),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              (data['user_answer'] as String),
+                                              style: GoogleFonts.roboto(
+                                                fontSize: 20,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                    Text(
-                                      (data['correct_answer'] as String),
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 20,
-                                          color:
-                                              Color.fromARGB(255, 24, 85, 30),
-                                          fontWeight: FontWeight.bold),
+                                    Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                12),
+                                        child: Container(
+                                          padding: const EdgeInsets.all(20),
+                                          width: double.infinity,
+                                          decoration: const BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  Color.fromARGB(
+                                                      255, 5, 91, 33),
+                                                  Color.fromARGB(
+                                                      255, 44, 143, 71)
+                                                ],
+                                                begin: Alignment.bottomLeft,
+                                                end: Alignment.bottomRight),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              (data['correct_answer']
+                                                  as String),
+                                              style: GoogleFonts.roboto(
+                                                  fontSize: 20,
+                                                  color: const Color.fromARGB(
+                                                      255, 255, 255, 255),
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
