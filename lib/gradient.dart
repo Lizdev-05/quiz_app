@@ -7,10 +7,13 @@ class Gradient extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          gradient: LinearGradient(colors: [
-        Color.fromARGB(255, 75, 1, 171),
-        Color.fromARGB(255, 69, 0, 159)
-      ])),
+        gradient: LinearGradient(
+          colors: [
+            Color.fromARGB(255, 75, 1, 171),
+            Color.fromARGB(255, 69, 0, 159)
+          ],
+        ),
+      ),
     );
   }
 }
